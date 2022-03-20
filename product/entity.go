@@ -1,12 +1,26 @@
 package product
 
+import "time"
+
 type Product struct {
-	Product_id int    `json:"product_id"`
-	Name       string `json:"product_name"`
-	Category   string `json:"category"`
-	Brand      string `json:"brand"`
-	Spec       string `json:"spec"`
-	Rp         string `json:"price"`
-	Disc       string `json:"discount"`
-	Rank       int    `json:"rank"`
+	ID           int
+	Name         string
+	Category     string
+	Brand        string
+	Spec         string
+	Rp           string
+	Disc         string
+	Rank         int
+	DateRegister time.Time
+	DateUpdate   time.Time
+	Photos       []Photos
+}
+
+type Photos struct {
+	Id           int
+	ProductID    int
+	FileName     string
+	IsCover      int
+	DateRegister time.Time
+	DateUpdate   time.Time
 }

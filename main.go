@@ -38,8 +38,10 @@ func main() {
 	productHandler := handler.NewProductHandler(productService)
 
 	router := gin.Default()
+	router.Static("/photos", "./photos")
 	api := router.Group("/api/v1")
 	api.GET("/products", productHandler.GetProducts)
+	api.GET("/product/:id", productHandler.GetProduct)
 
 	router.Run()
 }

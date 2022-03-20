@@ -1,7 +1,8 @@
 package product
 
 type Service interface {
-	GetProducts(limit int, page int, productID int) ([]Product, error)
+	GetProducts(limit int, page int, category string, brand string) ([]Product, error)
+	GetProductByID(input GetProductDetailInput) (Product, error)
 }
 
 type service struct {
@@ -12,7 +13,7 @@ func NewService(repository Repository) *service {
 	return &service{repository}
 }
 
-func (s *service) GetProducts(limit int, page int, productID int) ([]Product, error) {
+func (s *service) GetProducts(limit int, page int, category string, brand string) ([]Product, error) {
 	if limit == 0 {
 		limit = 100
 	}
@@ -25,8 +26,26 @@ func (s *service) GetProducts(limit int, page int, productID int) ([]Product, er
 		page = limit * (page - 1)
 	}
 
-	if productID != 0 {
-		products, err := s.repository.FindByProductID(limit, page, productID)
+	if category != "" && brand == "" {
+		products, err := s.repository.FindByCategory(limit, page, category)
+		if err != nil {
+			return products, err
+		}
+
+		return products, nil
+	}
+
+	if category == "" && brand != "" {
+		products, err := s.repository.FindByBrand(limit, page, brand)
+		if err != nil {
+			return products, err
+		}
+
+		return products, nil
+	}
+
+	if category != "" && brand != "" {
+		products, err := s.repository.FindByCatBrand(limit, page, category, brand)
 		if err != nil {
 			return products, err
 		}
@@ -40,4 +59,14 @@ func (s *service) GetProducts(limit int, page int, productID int) ([]Product, er
 	}
 
 	return products, nil
+}
+
+func (s *service) GetProductByID(input GetProductDetailInput) (Product, error) {
+	product, err := s.repository.FindByID(input.ID)
+
+	if err != nil {
+		return product, err
+	}
+
+	return product, nil
 }
