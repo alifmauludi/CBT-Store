@@ -60,7 +60,7 @@
 }        
 ```
 
-###### Parameter: ######
+**Parameter:**
 |Input Parameter|Type    |           |
 |---------------|--------|-----------|
 |limit          |(int)   |Optional   |
