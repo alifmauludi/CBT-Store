@@ -60,7 +60,6 @@
 }        
 ```
 
-```
 ######Parameter:######
 |Input Parameter|Type    |           |
 |---------------|--------|-----------|
@@ -68,7 +67,6 @@
 |page           |(int)   |Optional   |
 |category       |(string)|Optional   |
 |brand          |(string)|Optional   |
-```
 
 **localhost:8080/api/v1/products?limit=2&page=2**
 
