@@ -61,11 +61,13 @@
 ```
 
 ```
-Parameter:
-1. limit (int) - Optional
-2. page (int) - Optional
-3. category (string) - Optional
-4. brand (string) - Optional
+######Parameter:######
+|Input Parameter|Type    |           |
+|---------------|--------|-----------|
+|limit          |(int)   |Optional   |
+|page           |(int)   |Optional   |
+|category       |(string)|Optional   |
+|brand          |(string)|Optional   |
 ```
 
 **localhost:8080/api/v1/products?limit=2&page=2**
